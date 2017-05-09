@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    {% for product in products %}
+
+        {% include 'product/product_item.html' %}
+
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Products</title>
+
+
+    <div class="auth_buttons">
+
+        {% if user.is_authenticated %}
+
+            <span class="hello">Hello, <b>{{ user.username }}</b></span>
+            <a href="{% url 'logout' %}" class="btn btn-info btn-lg" id="logout_button"><span
+                    class="glyphicon glyphicon-user"></span> Log out </a>
+
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-info btn-lg" id="login_button"><span
+                    class="glyphicon glyphicon-user"></span> Login </a>
+            <a href="{% url 'register' %}" class="btn btn-info btn-lg" id="register_button"><span
+                    class="glyphicon glyphicon-lock"></span> Register </a>
+        {% endif %}
+
+    </div>
+
+
+    <link rel="stylesheet" href="{% static 'css/core.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/business-casual.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+          rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+          rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div class="brand">Products</div>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'categories_list' %}">Categories</a>
+                </li>
+                <li>
+                    <a href="{% url 'last_24_hours' %}">Last added</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    {% block message %}
+        {% if message %}
+            <div class="alert alert-info">
+                <strong> {{ message }} </strong>
+            </div>
+        {% endif %}
+    {% endblock %}
+
+
+
+
+    {% block content %}
+
+        <div class="jumbotron text-center">
+
+            <br><br>
+            <h1>Home Page</h1>
+            <br><br>
+
+        </div>
+
+
+    {% endblock %}
+
+</div>
+
+{% block footer %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Yarbit 2017</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+</body>
+
+</html>

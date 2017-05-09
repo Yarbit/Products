@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <form method="post" action="">{% csrf_token %}
+
+                {{ form }}
+
+                <input type="submit" class="login loginmodal-submit" value="Register">
+
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
