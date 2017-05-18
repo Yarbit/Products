@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=100, unique=True, editable=False)
+    slug = models.SlugField(max_length=128, unique=True, editable=False)
     description = models.TextField()
 
     class Meta:
@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=100, unique=True, editable=False)
+    slug = models.SlugField(max_length=128, unique=True, editable=False)
     description = models.TextField()
     price = models.PositiveIntegerField()
     created_at = models.DateTimeField(

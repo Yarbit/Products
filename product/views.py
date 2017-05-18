@@ -10,17 +10,16 @@ from product.models import Category, Product
 
 # /products/
 class CategoriesList(ListView):
-    model = Category
+    queryset = Category
     template_name = 'product/categories_list.html'  # name of template
 
     def get_context_data(self, **kwargs):
         message = ''  # info message
         # Call the base implementation first to get a context
         context = super(CategoriesList, self).get_context_data(**kwargs)
-        categories = Category.objects.all()
-        if not categories:
+        if not self.queryset:
             message = 'No categories.'
-        context['categories'] = categories
+        context['categories'] = self.queryset
         context['message'] = message
         return context
 
@@ -53,7 +52,7 @@ class ProductDetail(DetailView):
         context = super(ProductDetail, self).get_context_data(**kwargs)
         category = get_object_or_404(Category, slug=self.kwargs['category_slug'])
         try:
-            product = category.product_set.get(slug=self.kwargs['product_slug'])
+            product = category.product_set.get(request=self.kwargs['product_slug'])
         except Product.DoesNotExist:  # return 404 error if object not found
             raise Http404
         context['product'] = product
